@@ -1,0 +1,24 @@
+﻿namespace ComSaleSystemAPI.Migrations
+{
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ComSaleSystemAPI.Context.SaleSystemContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "ComSaleSystemAPI.Context.SaleSystemContext";
+        }
+
+        protected override void Seed(ComSaleSystemAPI.Context.SaleSystemContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
+        }
+    }
+}
