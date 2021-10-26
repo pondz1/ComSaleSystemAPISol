@@ -31,7 +31,7 @@ namespace ComSaleSystemAPI.Repositories
 
         public IEnumerable<Product> GetProducts()
         {
-            return context.Products.ToList();
+            return context.Products.Include(a => a.ProType).ToList();
         }
 
         public void InsertProduct(Product product)
