@@ -22,6 +22,7 @@ namespace ComSaleSystemAPI.Models
         public string ProModel { get; set; }
         public string ProDetail { get; set; }
         public string ProImage { get; set; }
+        public int ProAmount { get; set; }
 
     }
 }

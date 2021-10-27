@@ -8,7 +8,7 @@ namespace ComSaleSystemAPI.Repositories
 {
     interface IProductRepository
     {
-        public IEnumerable<Product> GetProducts();
+        public IEnumerable<Product> GetProducts(string id);
         Product GetProductById(int productId);
         void InsertProduct(Product product);
         void DeleteProduct(int productId);

@@ -24,13 +24,13 @@ namespace ComSaleSystemAPI.Controllers
             proRepo = new ProductRepository(context);
         }
 
-        // GET: api/<ProductController>
-        [HttpGet]
+        // GET: api/<ProductController>/All/1
+        [HttpGet("Get/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Get()
+        public IActionResult Get(string id)
         {
             //return new string[] { "value1", "value2" };
-            return Ok(new { Message = "OK", Data = proRepo.GetProducts() });
+             return Ok(new { Message = "OK", Data = proRepo.GetProducts(id) });
         }
 
         // GET api/<ProductController>/5
