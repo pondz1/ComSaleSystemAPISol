@@ -25,12 +25,12 @@ namespace ComSaleSystemAPI.Controllers
         }
 
         // GET: api/<ProductController>/All/1
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{path}/{key}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Get(string id)
+        public IActionResult Get(string key, string path)
         {
             //return new string[] { "value1", "value2" };
-             return Ok(new { Message = "OK", Data = proRepo.GetProducts(id) });
+             return Ok(new { Message = "OK", Data = proRepo.GetProducts(key, path)});
         }
 
         // GET api/<ProductController>/5

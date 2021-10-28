@@ -29,17 +29,24 @@ namespace ComSaleSystemAPI.Repositories
             return context.Products.Find(productId);
         }
 
-        public IEnumerable<Product> GetProducts(string id)
+        public IEnumerable<Product> GetProducts(string key, string path)
         {
-            if(id == "All")
+            if (path.Equals("type"))
             {
-                return context.Products.Include(a => a.ProType).ToList();
+                int myID = int.Parse(key);
+                return context.Products.Include(a => a.ProType).Where(b => b.TypeId == myID).ToList();
             } else
             {
-                int myID = Int32.Parse(id);
-                return context.Products.Include(a => a.ProType).Where(b => b.TypeId == myID).ToList();
+                if (key == "all")
+                {
+                    return context.Products.Include(a => a.ProType).ToList();
+                }
+                else
+                {
+                    return context.Products.Include(a => a.ProType)
+                        .Where(b => b.ProName.Contains(key) || b.ProBrand.Contains(key) || b.ProModel.Contains(key) || b.ProDetail.Contains(key)).ToList();
+                }
             }
-            
         }
 
         public void InsertProduct(Product product)
