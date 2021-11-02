@@ -45,6 +45,12 @@ namespace ComSaleSystemAPI.Repositories
             context.SaveChanges();
         }
 
+        public IEnumerable<Employee> SearchEmployees(string key)
+        {
+            return context.Employees
+                        .Where(b => b.EmpAddress.Contains(key) || b.EmpLastName.Contains(key) || b.EmpName.Contains(key)).ToList();
+        }
+
         public void UpdateEmployee(Employee employee)
         {
             context.Entry(employee).State = EntityState.Modified;

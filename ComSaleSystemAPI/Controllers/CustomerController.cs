@@ -32,6 +32,15 @@ namespace ComSaleSystemAPI.Controllers
             return Ok(new { Message = "OK", Data = cusRepo.GetCustomers() });
         }
 
+        // GET: api/<CustomerController>
+        [HttpGet("Search/{key}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Search(string key)
+        {
+            //return new string[] { "value1", "value2" };
+            return Ok(new { Message = "OK", Data = cusRepo.SearchCustomers(key) });
+        }
+
         // GET api/<CustomerController>/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

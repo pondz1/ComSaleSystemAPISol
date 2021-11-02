@@ -44,6 +44,12 @@ namespace ComSaleSystemAPI.Repositories
             context.SaveChanges();
         }
 
+        public IEnumerable<Customer> SearchCustomers(string key)
+        {
+            return context.Customers
+                        .Where(b => b.CusFirstName.Contains(key) || b.CusLastName.Contains(key) || b.CusAddress.Contains(key)).ToList();
+        }
+
         public void UpdateCustomer(Customer customer)
         {
             context.Entry(customer).State = EntityState.Modified;

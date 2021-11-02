@@ -9,7 +9,8 @@ namespace ComSaleSystemAPI.Models
     {
         public int EmployeeID { get; set; }
         public string EmpName { get; set; }
-        public string EmpPosition { get; set; }
+        public string EmpLastName { get; set; }
+        public int EmpPosition { get; set; }
         public string EmpAddress { get; set; }
         public decimal EmpSalary { get; set; }
         public decimal EmpJoiningDate { get; set; }

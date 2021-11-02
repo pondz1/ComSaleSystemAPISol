@@ -9,6 +9,7 @@ namespace ComSaleSystemAPI.Repositories
     interface IEmployeeRepository
     {
         IEnumerable<Employee> GetEmployees();
+        IEnumerable<Employee> SearchEmployees(string key);
         Employee GetEmployeeById(int employeeId);
         void InsertEmployee(Employee employee);
         void DeleteEmployee(int employeeId);
