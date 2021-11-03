@@ -9,8 +9,9 @@ namespace ComSaleSystemAPI.Models
     public class ProductGroup
     {
         [Key]
-        public int PrGrID { get; set; }
-        public string PrGrProduct { get; set; }
-        public decimal PrGrPrice { get; set; }
+        public int PGID { get; set; }
+        public string PGName { get; set; }
+        public decimal PGPrice { get; set; }
+        public List<ProductSet> Products { get; set; }
     }
 }

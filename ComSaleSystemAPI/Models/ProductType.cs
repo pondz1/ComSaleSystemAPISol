@@ -11,5 +11,6 @@ namespace ComSaleSystemAPI.Models
         [Key]
         public int TypeID { get; set; }
         public string TypeName { get; set; }
+        //public List<Product> Products { get; set; }
     }
 }

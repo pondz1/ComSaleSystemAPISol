@@ -24,5 +24,8 @@ namespace ComSaleSystemAPI.Models
         public string ProImage { get; set; }
         public int ProAmount { get; set; }
 
+        //public int GroupId { get; set; }
+        //public ProductGroup ProGroup { get; set; }
+
     }
 }

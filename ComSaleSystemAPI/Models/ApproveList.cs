@@ -12,7 +12,7 @@ namespace ComSaleSystemAPI.Models
         public int AppID { get; set; }
         public int AppStatus { get; set; }
 
-        public int PrGrID { get; set; }
+        public int PGID { get; set; }
         public ProductGroup ProductGroup  { get; set; }
 }
 }
