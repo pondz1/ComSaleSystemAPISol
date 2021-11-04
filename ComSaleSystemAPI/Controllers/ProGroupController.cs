@@ -23,18 +23,21 @@ namespace ComSaleSystemAPI.Controllers
             PGRepo = new ProductGroupRepository(context);
         }
 
-        // GET: api/<ProGroupController>
+        //GET: api/<ProGroupController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            //return new string[] { "value1", "value2" };
+            var value = PGRepo.GetProductGroups();
+            return Ok(new { Message = "OK", Data = value });
         }
 
         // GET api/<ProGroupController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetById(int id)
         {
-            return "value";
+            var value = PGRepo.GetProductGroupById(id);
+            return Ok(new { Message = "OK", Data = value });
         }
 
         // POST api/<ProGroupController>
@@ -57,15 +60,15 @@ namespace ComSaleSystemAPI.Controllers
         }
 
         // PUT api/<ProGroupController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
         // DELETE api/<ProGroupController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

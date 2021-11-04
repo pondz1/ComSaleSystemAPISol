@@ -14,5 +14,5 @@ namespace ComSaleSystemAPI.Models
 
         public int PGID { get; set; }
         public ProductGroup ProductGroup  { get; set; }
-}
+    }
 }

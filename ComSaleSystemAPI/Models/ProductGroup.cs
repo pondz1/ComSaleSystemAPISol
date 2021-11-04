@@ -12,6 +12,7 @@ namespace ComSaleSystemAPI.Models
         public int PGID { get; set; }
         public string PGName { get; set; }
         public decimal PGPrice { get; set; }
+        public bool PGStatus { get; set; }
         public List<ProductSet> Products { get; set; }
     }
 }

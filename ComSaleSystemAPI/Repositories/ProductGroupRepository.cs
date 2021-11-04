@@ -26,12 +26,26 @@ namespace ComSaleSystemAPI.Repositories
 
         public ProductGroup GetProductGroupById(int ProductGroupId)
         {
+            //context.ProductSets.Where(a => a.PGID.Equals(ProductGroupId)).Include(a => a.Product).ToList();
             return context.ProductGroups.Find(ProductGroupId);
         }
 
+
         public IEnumerable<ProductGroup> GetProductGroups()
         {
-            return context.ProductGroups.ToList();
+            List<ProductGroup> PGList = context.ProductGroups.Include(a => a.Products).ToList();
+            //foreach(ProductGroup productGroup in PGList)
+            //{
+            //    List<Product> products = new();
+            //    foreach(ProductSet productSet in productGroup.Products)
+            //    {
+
+            //        productSet.Product = context.Products.Where(a => a.ProductId.Equals(productSet.ProductId));
+            //    }
+
+            //    //productGroup.Products
+            //}
+            return PGList;
         }
 
         public void InsertProductGroup(ProductGroup ProductGroup)
