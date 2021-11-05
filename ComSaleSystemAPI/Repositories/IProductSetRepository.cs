@@ -9,5 +9,7 @@ namespace ComSaleSystemAPI.Repositories
     interface IProductSetRepository
     {
         public IEnumerable<ProductSet> GetByProGroup(int id);
+        public void DeleteProductSetList(int[] productId);
+        public void Save();
     }
 }

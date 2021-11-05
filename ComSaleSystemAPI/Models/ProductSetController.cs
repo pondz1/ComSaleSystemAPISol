@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -63,5 +64,21 @@ namespace ComSaleSystemAPI.Models
         //public void Delete(int id)
         //{
         //}
+        [HttpDelete("List")]
+        public IActionResult Delete(ProSetList json)
+        {
+            try
+            {
+                ProSetRepo.DeleteProductSetList(json.ProSetID);
+                ProSetRepo.Save();
+                //proRepo.DeleteProduct(id);
+                //proRepo.Save();
+                return Ok(new { Message = "Success", Test = json });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { e.Message });
+            }
+        }
     }
 }

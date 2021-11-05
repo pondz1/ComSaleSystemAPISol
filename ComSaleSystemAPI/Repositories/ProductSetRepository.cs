@@ -16,9 +16,24 @@ namespace ComSaleSystemAPI.Repositories
             context = systemContext;
         }
 
+        public void DeleteProductSetList(int[] productId)
+        {
+            foreach(int id in productId)
+            {
+                ProductSet product = context.ProductSets.Find(id);
+                context.ProductSets.Remove(product);
+            } 
+        }
+
         public IEnumerable<ProductSet> GetByProGroup(int id)
         {
             return context.ProductSets.Where(a => a.PGID.Equals(id)).Include(a => a.Product).Include(a => a.Product.ProType).ToList();
         }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
     }
 }

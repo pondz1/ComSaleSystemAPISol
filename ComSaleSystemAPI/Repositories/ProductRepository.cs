@@ -35,7 +35,8 @@ namespace ComSaleSystemAPI.Repositories
             {
                 int myID = int.Parse(key);
                 return context.Products.Include(a => a.ProType).Where(b => b.TypeId == myID).ToList();
-            } else
+            }
+            else
             {
                 if (key == "all")
                 {
@@ -46,6 +47,32 @@ namespace ComSaleSystemAPI.Repositories
                     return context.Products.Include(a => a.ProType)
                         .Where(b => b.ProName.Contains(key) || b.ProBrand.Contains(key) || b.ProModel.Contains(key) || b.ProDetail.Contains(key)).ToList();
                 }
+            }
+        }
+
+        public IEnumerable<Product> GetProductSearch(ProductSearch key)
+        {
+            // key.ProductType != -1 && (key.Keyword != "" || key.Keyword != null)
+            if (key.ProductType != -1 && (key.Keyword == "" || key.Keyword == null))
+            {
+                return context.Products.Include(a => a.ProType).Where(c => c.TypeId.Equals(key.ProductType)).ToList();
+
+            }
+            else if (key.ProductType == -1 && (key.Keyword != "" || key.Keyword != null))
+            {
+                return context.Products.Include(a => a.ProType)
+                        .Where(b => b.ProName.Contains(key.Keyword) ||
+                                    b.ProBrand.Contains(key.Keyword) ||
+                                    b.ProModel.Contains(key.Keyword) ||
+                                    b.ProDetail.Contains(key.Keyword)).ToList();
+            }
+            else
+            {
+                return context.Products.Include(a => a.ProType)
+                        .Where(b => b.ProName.Contains(key.Keyword) ||
+                                    b.ProBrand.Contains(key.Keyword) ||
+                                    b.ProModel.Contains(key.Keyword) ||
+                                    b.ProDetail.Contains(key.Keyword)).Where(c => c.TypeId.Equals(key.ProductType)).ToList();
             }
         }
 

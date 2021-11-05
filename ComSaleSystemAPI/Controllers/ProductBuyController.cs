@@ -14,43 +14,52 @@ namespace ComSaleSystemAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProGroupController : ControllerBase
+    public class ProductBuyController : ControllerBase
     {
-        readonly ProductGroupRepository PGRepo;
-        public ProGroupController()
+        ProductBuyRepository proBuyRepo;
+
+        public ProductBuyController()
         {
             var context = new SaleSystemContext();
-            PGRepo = new ProductGroupRepository(context);
+            proBuyRepo = new ProductBuyRepository(context);
         }
 
-        //GET: api/<ProGroupController>
+        // GET: api/<ProductBuyController>/All/1
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Get()
         {
             //return new string[] { "value1", "value2" };
-            var value = PGRepo.GetProductGroups();
-            return Ok(new { Message = "OK", Data = value });
+             return Ok(new { Message = "OK", Data = proBuyRepo.GetProductBuys()});
         }
 
-        // GET api/<ProGroupController>/5
+        // GET: api/<ProductBuyController>/Search/key
+        //[HttpPost("Search")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public IActionResult Get(ProductBuySearch key)
+        //{
+        //    //return new string[] { "value1", "value2" };
+        //    return Ok(new { Message = "OK", Data = proBuyRepo.GetProductBuySearch(key) ,Key = key});
+        //}
+
+        // GET api/<ProductBuyController>/5
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetByID(int id)
         {
-            var value = PGRepo.GetProductGroupById(id);
+            var value = proBuyRepo.GetProductBuyById(id);
             return Ok(new { Message = "OK", Data = value });
         }
 
-        // POST api/<ProGroupController>
+        // POST api/<ProductBuyController>
         [HttpPost("Insert")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult Post([FromBody] ProductGroup value)
+        public IActionResult Post([FromBody] ProductBuy value)
         {
             try
             {
-                //proRepo.InsertProduct(value);
-                //proRepo.Save();
-                PGRepo.InsertProductGroup(value);
-                PGRepo.Save();
+                proBuyRepo.InsertProductBuy(value);
+                proBuyRepo.Save();
                 return StatusCode(StatusCodes.Status201Created, new { Message = "Success" });
             }
             catch (Exception e)
@@ -59,18 +68,15 @@ namespace ComSaleSystemAPI.Controllers
             }
         }
 
-        // PUT api/<ProGroupController>/5
+        // PUT api/<ProductBuyController>/5
         [HttpPut("Update")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Put([FromBody] ProductGroup value)
+        public IActionResult Put([FromBody] ProductBuy value)
         {
             try
             {
-                PGRepo.UpdateProductGroup(value);
-                PGRepo.Save();
+                proBuyRepo.UpdateProductBuy(value);
+                proBuyRepo.Save();
                 return Ok(new { Message = "Success" });
             }
             catch (Exception e)
@@ -79,14 +85,14 @@ namespace ComSaleSystemAPI.Controllers
             }
         }
 
-        // DELETE api/<ProGroupController>/5
+        // DELETE api/<ProductBuyController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-                try
+            try
             {
-                PGRepo.DeleteProductGroup(id);
-                PGRepo.Save();
+                proBuyRepo.DeleteProductBuy(id);
+                proBuyRepo.Save();
                 return Ok(new { Message = "Success" });
             }
             catch (Exception e)

@@ -60,6 +60,17 @@ namespace ComSaleSystemAPI.Repositories
 
         public void UpdateProductGroup(ProductGroup ProductGroup)
         {
+            //context.ProductGroups.Up
+            
+            foreach (ProductSet productSet in ProductGroup.Products)
+            {
+                //ProductSet ProductSet = new();
+                //ProductSet.PGID = productSet.PGID;
+                //ProductSet.Product = productSet.Product;
+                //ProductSet.ProductAmount = productSet.ProductAmount;
+                //ProductSet.ProductId = productSet.PGID;
+                context.ProductSets.Add(productSet);
+            }
             context.Entry(ProductGroup).State = EntityState.Modified;
         }
     }

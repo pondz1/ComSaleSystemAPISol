@@ -33,6 +33,15 @@ namespace ComSaleSystemAPI.Controllers
              return Ok(new { Message = "OK", Data = proRepo.GetProducts(key, path)});
         }
 
+        // GET: api/<ProductController>/Search/key
+        [HttpPost("Search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Get(ProductSearch key)
+        {
+            //return new string[] { "value1", "value2" };
+            return Ok(new { Message = "OK", Data = proRepo.GetProductSearch(key) ,Key = key});
+        }
+
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
