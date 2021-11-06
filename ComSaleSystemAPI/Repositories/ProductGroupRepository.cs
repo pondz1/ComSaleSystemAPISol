@@ -48,6 +48,12 @@ namespace ComSaleSystemAPI.Repositories
             return PGList;
         }
 
+        public IEnumerable<ProductGroup> GetProductGroupsApprove()
+        {
+            List<ProductGroup> PGList = context.ProductGroups.Where(a => a.PGStatus == true).Include(a => a.Products).ToList();
+            return PGList;
+        }
+
         public void InsertProductGroup(ProductGroup ProductGroup)
         {
             context.ProductGroups.Add(ProductGroup);
@@ -60,17 +66,30 @@ namespace ComSaleSystemAPI.Repositories
 
         public void UpdateProductGroup(ProductGroup ProductGroup)
         {
+            var productSetToDelete = context.ProductSets.Where(a => a.PGID == ProductGroup.PGID).ToList();
+            context.ProductSets.RemoveRange(productSetToDelete);
+            context.SaveChanges();
+            //List<ProductSet> ProductSets = new();
+            //foreach (ProductSet productSet in ProductGroup.Products)
+            //{
+            //    ProductSets.Add(ProductSets);
+            //}
             //context.ProductGroups.Up
-            
+
             foreach (ProductSet productSet in ProductGroup.Products)
             {
-                //ProductSet ProductSet = new();
-                //ProductSet.PGID = productSet.PGID;
-                //ProductSet.Product = productSet.Product;
-                //ProductSet.ProductAmount = productSet.ProductAmount;
-                //ProductSet.ProductId = productSet.PGID;
+                ProductSet ProductSet = new();
+                ProductSet.PGID = productSet.PGID;
+                ProductSet.Product = productSet.Product;
+                ProductSet.ProductAmount = productSet.ProductAmount;
+                ProductSet.ProductId = productSet.PGID;
                 context.ProductSets.Add(productSet);
             }
+            context.Entry(ProductGroup).State = EntityState.Modified;
+        }
+
+        public void UpdateStatusGroup(ProductGroup ProductGroup)
+        {
             context.Entry(ProductGroup).State = EntityState.Modified;
         }
     }

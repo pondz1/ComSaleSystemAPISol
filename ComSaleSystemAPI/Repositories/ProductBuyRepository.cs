@@ -36,15 +36,17 @@ namespace ComSaleSystemAPI.Repositories
 
         public void InsertProductBuy(ProductBuy productBuy)
         {
-            context.ProductBuys.Add(productBuy);
             foreach (ProductIBuyItem productIBuyItem in productBuy.ProductList)
             {
                 Product product = productIBuyItem.Product;
                 product.ProAmount -= productIBuyItem.BuyAmount;
+                product.TypeId = productIBuyItem.Product.TypeId;
                 context.Entry(product).State = EntityState.Modified;
 
             }
             Save();
+            context.ProductBuys.Add(productBuy);
+            
         }
 
         public void Save()

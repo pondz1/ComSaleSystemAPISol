@@ -34,13 +34,13 @@ namespace ComSaleSystemAPI.Repositories
             if (path.Equals("type"))
             {
                 int myID = int.Parse(key);
-                return context.Products.Include(a => a.ProType).Where(b => b.TypeId == myID).ToList();
+                return context.Products.Where(b => b.TypeId == myID).ToList();
             }
             else
             {
                 if (key == "all")
                 {
-                    return context.Products.Include(a => a.ProType).ToList();
+                    return context.Products.ToList();
                 }
                 else
                 {
@@ -55,12 +55,12 @@ namespace ComSaleSystemAPI.Repositories
             // key.ProductType != -1 && (key.Keyword != "" || key.Keyword != null)
             if (key.ProductType != -1 && (key.Keyword == "" || key.Keyword == null))
             {
-                return context.Products.Include(a => a.ProType).Where(c => c.TypeId.Equals(key.ProductType)).ToList();
+                return context.Products.Where(c => c.TypeId.Equals(key.ProductType)).ToList();
 
             }
             else if (key.ProductType == -1 && (key.Keyword != "" || key.Keyword != null))
             {
-                return context.Products.Include(a => a.ProType)
+                return context.Products
                         .Where(b => b.ProName.Contains(key.Keyword) ||
                                     b.ProBrand.Contains(key.Keyword) ||
                                     b.ProModel.Contains(key.Keyword) ||
@@ -68,7 +68,7 @@ namespace ComSaleSystemAPI.Repositories
             }
             else
             {
-                return context.Products.Include(a => a.ProType)
+                return context.Products
                         .Where(b => b.ProName.Contains(key.Keyword) ||
                                     b.ProBrand.Contains(key.Keyword) ||
                                     b.ProModel.Contains(key.Keyword) ||

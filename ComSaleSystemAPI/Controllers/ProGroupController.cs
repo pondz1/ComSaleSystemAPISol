@@ -32,6 +32,14 @@ namespace ComSaleSystemAPI.Controllers
             return Ok(new { Message = "OK", Data = value });
         }
 
+        [HttpGet("Approve")]
+        public IActionResult GetApprove()
+        {
+            //return new string[] { "value1", "value2" };
+            var value = PGRepo.GetProductGroupsApprove();
+            return Ok(new { Message = "OK", Data = value });
+        }
+
         // GET api/<ProGroupController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
@@ -78,6 +86,23 @@ namespace ComSaleSystemAPI.Controllers
                 return BadRequest(new { e.Message });
             }
         }
+
+
+        [HttpPut("Update/Status")]
+        public IActionResult PutStatus([FromBody] ProductGroup value)
+        {
+            try
+            {
+                PGRepo.UpdateStatusGroup(value);
+                PGRepo.Save();
+                return Ok(new { Message = "Success" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { e.Message });
+            }
+        }
+        
 
         // DELETE api/<ProGroupController>/5
         [HttpDelete("{id}")]

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace ComSaleSystemAPI.Models
 {
-    public class ProductInven
+    public class ProductRevenue
     {
-        public ProductInven(ProductType productType, List<Product> products)
+        public ProductRevenue(ProductType productType, List<ProductIBuyItem> products)
         {
             ProductType = productType;
-            Products = products;
+            ProductBuys = products;
         }
 
         public virtual ProductType ProductType { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public virtual List<ProductIBuyItem> ProductBuys { get; set; }
     }
 }

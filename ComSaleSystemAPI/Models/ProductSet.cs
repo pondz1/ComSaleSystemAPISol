@@ -11,7 +11,7 @@ namespace ComSaleSystemAPI.Models
         [Key]
         public int SetId { get; set; }
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
         public int ProductAmount { get; set; }
 

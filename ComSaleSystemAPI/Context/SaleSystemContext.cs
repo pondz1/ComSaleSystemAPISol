@@ -17,5 +17,6 @@ namespace ComSaleSystemAPI.Context
         public DbSet<ApproveList> ApproveLists { get; set; }
         public DbSet<ProductSet> ProductSets { get; set; }
         public DbSet<ProductBuy> ProductBuys { get; set; }
+        public DbSet<ProductIBuyItem> ProductIBuyItems { get; set; }
     }
 }

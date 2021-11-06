@@ -27,7 +27,7 @@ namespace ComSaleSystemAPI.Repositories
 
         public IEnumerable<ProductSet> GetByProGroup(int id)
         {
-            return context.ProductSets.Where(a => a.PGID.Equals(id)).Include(a => a.Product).Include(a => a.Product.ProType).ToList();
+            return context.ProductSets.Where(a => a.PGID.Equals(id)).ToList();
         }
 
         public void Save()

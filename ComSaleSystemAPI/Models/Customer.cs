@@ -11,5 +11,6 @@ namespace ComSaleSystemAPI.Models
         public string CusFirstName { get; set; }
         public string CusLastName { get; set; }
         public string CusAddress { get; set; }
+        public bool Visible { get; set; }
     }
 }

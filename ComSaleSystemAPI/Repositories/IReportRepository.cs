@@ -9,5 +9,8 @@ namespace ComSaleSystemAPI.Repositories
     interface IReportRepository
     {
         IEnumerable<ProductInven> InventoryReport();
+        IEnumerable<ReportCustomer> GetReportCustomers();
+        IEnumerable<ReportCustomer> GetReportCustomerSerach(string key);
+        IEnumerable<ProductIBuyItem> GetProductBuyItemsByID(int id);
     }
 }

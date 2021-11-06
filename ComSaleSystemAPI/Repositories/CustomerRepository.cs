@@ -31,7 +31,7 @@ namespace ComSaleSystemAPI.Repositories
 
         public IEnumerable<Customer> GetCustomers()
         {
-            return context.Customers.ToList();
+            return context.Customers.Where(a => a.Visible == true).ToList();
         }
 
         public void InsertCustomer(Customer customer)

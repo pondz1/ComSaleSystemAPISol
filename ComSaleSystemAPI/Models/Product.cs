@@ -16,7 +16,7 @@ namespace ComSaleSystemAPI.Models
 
         //[ForeignKey("ProductType")]
         public int TypeId { get; set; }
-        public ProductType ProType { get; set; }
+        public virtual ProductType ProType { get; set; }
 
         public string ProBrand { get; set; }
         public string ProModel { get; set; }

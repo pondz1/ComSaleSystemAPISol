@@ -13,6 +13,6 @@ namespace ComSaleSystemAPI.Models
         public string PGName { get; set; }
         public decimal PGPrice { get; set; }
         public bool PGStatus { get; set; }
-        public List<ProductSet> Products { get; set; }
+        public virtual List<ProductSet> Products { get; set; }
     }
 }
